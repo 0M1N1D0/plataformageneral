@@ -14,26 +14,26 @@ class LoginForm(AuthenticationForm):
         'invalid_login': "Por favor, ingrese un número de nómina y contraseña correctos. Note que ambos campos pueden ser sensibles a mayúsculas y minúsculas."
     }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.pop('autofocus', None)
-        self.fields['password'].widget.attrs.pop('autocomplete', None)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['username'].widget.attrs.pop('autofocus', None)
+    #     self.fields['password'].widget.attrs.pop('autocomplete', None)
 
-        # Renombrar la etiqueta del campo username a "Número de nómina"
-        self.fields['username'].label = "Número de nómina"
+    #     # Renombrar la etiqueta del campo username a "Número de nómina"
+    #     self.fields['username'].label = "Número de nómina"
 
-        # Hacer que el campo username sea requerido y eliminar el campo username
-        self.fields['username'].required = True
-        del self.fields['username']
+    #     # Hacer que el campo username sea requerido y eliminar el campo username
+    #     self.fields['username'].required = True
+    #     del self.fields['username']
 
-    def clean(self):
-        numero_nomina = self.cleaned_data.get('numero_nomina')
-        password = self.cleaned_data.get('password')
+    # def clean(self):
+    #     numero_nomina = self.cleaned_data.get('numero_nomina')
+    #     password = self.cleaned_data.get('password')
 
-        if numero_nomina is not None and password:
-            self.user_cache = authenticate(numero_nomina=numero_nomina, password=password)
-            if self.user_cache is None:
-                raise self.get_invalid_login_error()
-            else:
-                self.confirm_login_allowed(self.user_cache)
-        return self.cleaned_data
+    #     if numero_nomina is not None and password:
+    #         self.user_cache = authenticate(numero_nomina=numero_nomina, password=password)
+    #         if self.user_cache is None:
+    #             raise self.get_invalid_login_error()
+    #         else:
+    #             self.confirm_login_allowed(self.user_cache)
+    #     return self.cleaned_data
