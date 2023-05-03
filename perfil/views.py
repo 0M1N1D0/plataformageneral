@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from .forms import CustomLoginForm
 
-# Create your views here.
+
+def login(request):
+    form = CustomLoginForm(request.POST or None)
+
+
