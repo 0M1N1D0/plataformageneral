@@ -7,7 +7,7 @@ Para hacer esto, debes crear un archivo forms.py
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, authenticate
 
-class LoginForm(AuthenticationForm):
+class CustomLoginForm(AuthenticationForm):
     numero_nomina = forms.IntegerField(label="Número de nómina")
 
     error_messages = {

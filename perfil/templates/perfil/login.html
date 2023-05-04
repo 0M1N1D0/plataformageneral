@@ -10,7 +10,7 @@
   </br>
       <h2>Iniciar sesión</h2>
     </br>
-      <form method="post" class="form-group">
+      <form method="post" action="{% url 'perfil:login' %}" class="form-group">
         {% csrf_token %}
 
         <div class="mb-3">
