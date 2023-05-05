@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import CustomLoginForm
 from .forms import CustomUserCreationForm
+from django.contrib import messages
 
 
 def login(request):
@@ -33,10 +34,18 @@ def registro(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            messages.success(request, '¡Tu cuenta ha sido creada exitosamente! Por favor, inicia sesión para continuar.')
+            return redirect('perfil:login')
     else:
         form = CustomUserCreationForm()
+        if form.errors:
+            messages.success(request, 'Algo salió mal. Por favor, intente de nuevo.')
     return render(request, 'perfil/registro.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 
    
