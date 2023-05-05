@@ -10,23 +10,12 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     supervisor = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.nombres + " " + self.apellido_paterno + " " + self.apellido_materno
+    
+    class Meta:
+        verbose_name = "Usuario"
+        verbose_name_plural = "Usuarios"
+        ordering = ["numero_nomina"]
 
-#     # ********************************************************************
-#     # Agregar related_name a las relaciones de clave externa inversas
-#     # para solucionar el error de ambigüedad al hacer migraciones
-#     groups = models.ManyToManyField(
-#         "auth.Group",
-#         related_name="custom_users",
-#         blank=True,
-#         help_text="The groups this user belongs to. A user will get all permissions granted to each of their groups.",
-#         verbose_name="groups",
-#     )
 
-#     user_permissions = models.ManyToManyField(
-#         "auth.Permission",
-#         related_name="custom_users",
-#         blank=True,
-#         help_text="Specific permissions for this user.",
-#         verbose_name="user permissions",
-#     )
-#     # ********************************************************************
