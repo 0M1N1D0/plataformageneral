@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% load widget_tweaks %}
+
+
+
+{% block content %}
+
+
+    <div class="container mt-3 mb-5 col-md-8">
+        <h1>Registro de usuario</h1>
+        <form method="POST" class="form-group">
+        {% csrf_token %}   
+        {{form.as_p}} 
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,6 +1,7 @@
 
 {% extends 'base.html' %}
 {% load custom_tags %}
+{% load widget_tweaks %}
 
 
 
@@ -14,13 +15,13 @@
         {% csrf_token %}
 
         <div class="mb-3">
-            <label for="{{ form.username.id_for_label }}" class="form-label">Número de Nómina</label>
-            {{ form.username|add_class:"form-control" }}
+            <!-- <label for="{{ form.username.id_for_label }}" class="form-label">Usuario</label> -->
+            {{ form.username|add_class:"form-control"|attr:"placeholder:Usuario" }}
         </div>
 
         <div class="mb-3">
-            <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label>
-            {{ form.password|add_class:"form-control "}}
+            <!-- <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label> -->
+            {{ form.password|add_class:"form-control"|attr:"placeholder:Contraseña"}}
         </div>
 
         <button type="submit" class="btn btn-secondary col-4">Enviar</button>

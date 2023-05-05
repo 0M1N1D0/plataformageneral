@@ -5,35 +5,31 @@ Para hacer esto, debes crear un archivo forms.py
 """
 
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
+from django.forms.widgets import CheckboxInput  
 
 class CustomLoginForm(AuthenticationForm):
-    numero_nomina = forms.IntegerField(label="Número de nómina")
+    username = forms.IntegerField(label="Usuario")
 
     error_messages = {
         'invalid_login': "Por favor, ingrese un número de nómina y contraseña correctos. Note que ambos campos pueden ser sensibles a mayúsculas y minúsculas."
     }
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['username'].widget.attrs.pop('autofocus', None)
-    #     self.fields['password'].widget.attrs.pop('autocomplete', None)
+   
+   
+class CustomUserCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
+        fields = UserCreationForm.Meta.fields + ('nombres','apellido_paterno','apellido_materno','numero_nomina','email','supervisor','is_staff', 'is_superuser')
 
-    #     # Renombrar la etiqueta del campo username a "Número de nómina"
-    #     self.fields['username'].label = "Número de nómina"
+    # agregar clases de bootstrap a los campos del formulario
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'form-control'})
 
-    #     # Hacer que el campo username sea requerido y eliminar el campo username
-    #     self.fields['username'].required = True
-    #     del self.fields['username']
-
-    # def clean(self):
-    #     numero_nomina = self.cleaned_data.get('numero_nomina')
-    #     password = self.cleaned_data.get('password')
-
-    #     if numero_nomina is not None and password:
-    #         self.user_cache = authenticate(numero_nomina=numero_nomina, password=password)
-    #         if self.user_cache is None:
-    #             raise self.get_invalid_login_error()
-    #         else:
-    #             self.confirm_login_allowed(self.user_cache)
-    #     return self.cleaned_data
+        # Agregar clases CSS a los campos is_staff y is_superuser
+        self.fields['is_staff'].widget = CheckboxInput(attrs={'class': 'form-check-input'})
+        self.fields['is_superuser'].widget = CheckboxInput(attrs={'class': 'form-check-input'})

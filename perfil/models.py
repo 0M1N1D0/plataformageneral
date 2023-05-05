@@ -1,15 +1,14 @@
-# from django.db import models
-# from django.contrib.auth.models import AbstractUser
+from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
-# class CustomUser(AbstractUser):
-#     nombres = models.CharField(max_length=50)
-#     apellido_paterno = models.CharField(max_length=50)
-#     apellido_materno = models.CharField(max_length=50)
-#     numero_nomina = models.IntegerField(primary_key=True)
-#     email = models.EmailField(unique=True)
-#     supervisor = models.CharField(max_length=50)
-#     is_admin = models.BooleanField(default=False)
+class CustomUser(AbstractUser):
+    nombres = models.CharField(max_length=50)
+    apellido_paterno = models.CharField(max_length=50)
+    apellido_materno = models.CharField(max_length=50)
+    numero_nomina = models.IntegerField(primary_key=True, verbose_name="Número de nómina")
+    email = models.EmailField(unique=True)
+    supervisor = models.CharField(max_length=50)
 
 
 #     # ********************************************************************

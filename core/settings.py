@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # terceros
+    'widget_tweaks',
     # apps propias
     'perfil',
     'home',
@@ -126,5 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home'
 
 # LOGOUT_REDIRECT_URL = 'login'
+
+AUTH_USER_MODEL = 'perfil.CustomUser'
 
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import CustomLoginForm
+from .forms import CustomUserCreationForm
 
 
 def login(request):
@@ -26,6 +27,17 @@ def login(request):
         form = CustomLoginForm()
         return render(request, "perfil/login.html", {"form": form})
     
+
+def registro(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'perfil/registro.html', {'form': form})
+
 
    
 
