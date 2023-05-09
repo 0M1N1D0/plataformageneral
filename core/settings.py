@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     # apps propias
     'perfil',
     'home',
+    'examen',
 ]
 
 
