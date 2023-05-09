@@ -5,6 +5,7 @@ from perfil.models import CustomUser
 class Examen(models.Model):
     nombre = models.CharField(max_length=50, verbose_name="Nombre del examen")  
     calificacion_minima = models.FloatField(verbose_name="Calificación mínima")
+    activo = models.BooleanField(verbose_name="¿Activo?")
     observaciones = models.TextField(verbose_name="Observaciones")
 
     def __str__(self):
@@ -48,6 +49,8 @@ class Resultado(models.Model):
     examen = models.ForeignKey(Examen, on_delete=models.CASCADE, verbose_name="Examen", related_name="resultados")
     calificacion = models.FloatField(verbose_name="Calificación")
     fecha_aplicacion = models.DateField(verbose_name="Fecha de aplicación")
+    hora_inicio = models.TimeField(verbose_name="Hora de inicio", null=True, blank=True)
+    hora_fin = models.TimeField(verbose_name="Hora de fin", null=True, blank=True)
 
     def __str__(self):
         return str(self.examen)

@@ -42,7 +42,7 @@ class RespuestaAdmin(admin.ModelAdmin):
     ordering = ("pregunta",)
 
     # ************************************************************** 
-    # This method is used to display the examen field in the list_display
+    # This method is used to display the "examen" field in the list_display
     def get_examen(self, obj):
         return obj.pregunta.examen
 
@@ -53,10 +53,18 @@ admin.site.register(Respuesta, RespuestaAdmin)
 
 
 class ResultadoAdmin(admin.ModelAdmin):
-    list_display = ("usuario", "examen", "calificacion", "fecha_aplicacion")
+    list_display = ("get_numero_nomina", "usuario", "examen", "calificacion", "fecha_aplicacion", "hora_inicio", "hora_fin")
     search_fields = ("usuario__username", "examen__nombre", "calificacion", "fecha_aplicacion")
     list_filter = ("usuario", "examen", "fecha_aplicacion")
     list_per_page = 10
     ordering = ("usuario",)
+
+    # **************************************************************
+    # This method is used to display the "numero_nomina" field in the list_display
+    def get_numero_nomina(self, obj):
+        return obj.usuario.numero_nomina
+    
+    get_numero_nomina.short_description = "Número de nómina"
+    # **************************************************************
 
 admin.site.register(Resultado, ResultadoAdmin)
