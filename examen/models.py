@@ -61,7 +61,7 @@ class Resultado(models.Model):
 class RespuestaUsuario(models.Model):
     usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Usuario", related_name="respuestas")
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE, verbose_name="Pregunta", related_name="respuestas_usuario")
-    respuesta = models.ForeignKey(Respuesta, on_delete=models.CASCADE, verbose_name="Respuesta", related_name="respuestas_usuario")
+    respuesta_usuario = models.ForeignKey(Respuesta, on_delete=models.CASCADE, verbose_name="Respuesta", related_name="respuestas_usuario")
 
     def __str__(self):
         return str(self.respuesta)
@@ -69,7 +69,7 @@ class RespuestaUsuario(models.Model):
     class Meta:
         verbose_name = "Respuesta del usuario"
         verbose_name_plural = "Respuestas del usuario"
-        ordering = ["respuesta"]
+        ordering = ["respuesta_usuario"]
 
 
 

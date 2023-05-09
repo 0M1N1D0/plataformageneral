@@ -22,7 +22,7 @@ class CustomUser(AbstractUser):
     apellido_materno = models.CharField(max_length=50)
     numero_nomina = models.IntegerField(primary_key=True, verbose_name="Número de nómina")
     email = models.EmailField(unique=True)
-    supervisor = models.ForeignKey(Supervisor, on_delete=models.CASCADE, verbose_name="Supervisor")
+    supervisor = models.ForeignKey(Supervisor, on_delete=models.CASCADE, verbose_name="Supervisor", blank=True, null=True)
 
     def __str__(self):
         return self.nombres + " " + self.apellido_paterno + " " + self.apellido_materno
