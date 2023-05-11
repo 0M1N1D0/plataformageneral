@@ -6,21 +6,20 @@
 
 {% block content %}
 
-  {% comment %} <div class="container mt-3">
-    {% if messages %}
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {% for message in messages %}
-          <p>{{ message }}</p>
-        {% endfor %}
+    <!-- Muestra mensaje de error si lo hay -->
+    {% if form.errors %}
+    <div class="container-fluid alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> Por favor, comprueba los datos introducidos.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-   {% endif %}
-  </div> {% endcomment %}
+    </div>
+    {% endif %}
+    <!-- ---------------------------------- -->
 
   <div class="container mb-3 col-sm-6 col-md-3">
-
   </br>
       <h2>Iniciar sesión</h2>
+      {{error}}
+
       <form method="post" action="{% url 'perfil:login' %}" class="form-group">
         {% csrf_token %}
 

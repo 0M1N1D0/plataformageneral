@@ -16,7 +16,7 @@ class CustomLoginForm(AuthenticationForm):
     username = forms.IntegerField(label="Usuario")
 
     error_messages = {
-        'invalid_login': "Por favor, ingrese un número de nómina y contraseña correctos. Note que ambos campos pueden ser sensibles a mayúsculas y minúsculas."
+        'invalid_login': "Por favor, ingrese un número de nómina y contraseña correctos."
     }
 
    

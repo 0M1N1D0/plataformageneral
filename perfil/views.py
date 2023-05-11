@@ -21,7 +21,9 @@ def login(request):
                 login(request, user)
                 return redirect('home')
             # redirect to a new URL:
-        return render(request, "login.html", {"form": form, "error_message": "Invalid username or password."})
+        return render(request, "login.html", {"form": form})
+    
+        
 
     # if a GET (or any other method) we'll create a blank form
     else:
