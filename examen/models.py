@@ -75,11 +75,3 @@ class RespuestaUsuario(models.Model):
         verbose_name_plural = "Respuestas del agente"
         ordering = ["respuesta_usuario"]
 
-
-
-
-
-
-
-
-

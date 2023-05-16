@@ -4,7 +4,7 @@ from django import forms
 
 
 class ExamenAdmin(admin.ModelAdmin):
-    list_display = ("nombre", "calificacion_minima", "observaciones")
+    list_display = ("nombre", "activo", "calificacion_minima", "observaciones")
     search_fields = ("nombre", "calificacion_minima", "observaciones")
     list_per_page = 10
     ordering = ("nombre",)

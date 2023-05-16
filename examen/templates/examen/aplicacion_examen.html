@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+
+        <h1>Aplicación de examen</h1>
+
+        {% if examen %}
+            <p>Esta es una aplicación del examen: {{examen}}</p>
+
+            <h2>Lista de preguntas</h2>
+            <ul>
+                {% for pregunta in preguntas %}
+                    <li>{{pregunta}}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Lista de respuestas</h2>
+            <ul>
+                {% for respuesta in respuestas %}
+                    <li>{{respuesta}}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2>Por el momento no hay exámen disponible.</h2>
+        {% endif %}
+
+        
+
+    </div>
+{% endblock %}
+
