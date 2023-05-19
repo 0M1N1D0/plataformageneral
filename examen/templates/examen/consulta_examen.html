@@ -1,35 +1,23 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
     <div class="container mt-5">
         {% if examen %}
             <h3>Aplicación del examen: {{examen}}</h3>
-            {% comment %} 
-            <h2>Lista de preguntas</h2>
-            <ul>
-                {% for pregunta in preguntas %}
-                    <li>{{pregunta}}</li>
-                    {% for respuesta in pregunta.respuestas.all %}
-                        <li>{{ respuesta.respuesta }}</li>
-                    {% endfor %}
-                {% endfor %}
-            </ul> 
-            {% endcomment %}
             {% for pregunta in preguntas %}
             <div class="card mb-3">
-                <div class="card-header p-3"></div>
                 <div class="card-body">
                     <h5 class="card-title mb-3">{{pregunta}}</h5>
                     {% for respuesta in pregunta.respuestas.all %}
                     <div class="form-group mt-2">
                         <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="opcion3" name="respuesta1" value="opcion3">
+                        <input class="form-check-input" type="radio" id="opcion{{respuesta.id}}" name="respuesta{{pregunta.id}}" value="{{respuesta.id}}">
                         <label class="form-check-label" for="opcion3">{{ respuesta.respuesta }}</label>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
-                <div class="card-footer text-muted p-3"></div>
             </div>
             {% endfor %}
 
